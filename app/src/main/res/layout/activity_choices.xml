@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".choices">
+
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:background="@color/purple_200"
+          android:text="Choices"
+          android:textColor="@color/white"
+          android:textSize="35dp"
+          android:textStyle="bold"
+          android:gravity="center"
+          />
+    <TextView
+        android:id="@+id/choices"
+        android:layout_below="@id/title"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginLeft="25dp"
+        android:background="#30ffffff"
+        android:gravity="center"
+        android:textColor="#60000000"
+        android:textSize="18dp"
+        />
+
+    <Button
+        android:id="@+id/delchoices"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choices"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#50000000"
+        android:padding="10dp"
+        android:text="delete"
+        android:textSize="20dp" />
+    <Button
+        android:id="@+id/addchoices"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/delchoices"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#50000000"
+        android:padding="10dp"
+        android:text="add"
+        android:textSize="20dp" />
+
+
+
+</RelativeLayout>

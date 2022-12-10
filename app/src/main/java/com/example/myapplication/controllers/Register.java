@@ -1,6 +1,4 @@
-package com.example.myapplication;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.myapplication.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.myapplication.R;
+import com.example.myapplication.dao.DBHelper;
+import com.example.myapplication.models.Users;
 
-import com.google.android.material.button.MaterialButton;
 
 public class Register extends AppCompatActivity {
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,34 +27,32 @@ public class Register extends AppCompatActivity {
 
         DBHelper DB=new DBHelper(this);
 
-
-
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String user=username.getText().toString();
                 String pass=password.getText().toString();
                 String re_pass=re_password.getText().toString();
+                Users User=new Users(user,pass);
 
                 //si les champ sont vides on declenche un Toast "please enter all fields"
-                if(user.equals("")||pass.equals("")||re_pass.equals("")){
+                if(User.getUsername().equals("")||User.getPassword().equals("")||re_pass.equals("")){
                     Toast.makeText(Register.this, "please enter all fields", Toast.LENGTH_SHORT).show();
                 }
 
                 /*sinon on verifie si l'utilisateur n'existe pas pour povoir l'inserer pour la 1ère fois et la dernière
-                il doit etre unique,avec la contrainte que le re-password sera égale au password*/
+                le username  doit etre unique,avec la contrainte que le re-password sera égale au password*/
                 else{
-                    if(pass.equals(re_pass)){
-                        Boolean checkuser=DB.checkusername(user);
+                    if(User.getPassword().equals(re_pass)){
+                        Boolean checkuser=DB.checkusername(User.getUsername());
                         if(checkuser==false){
-                            Boolean insert=DB.insertData(user,pass);
+                            Boolean insert=DB.insertData(User.getUsername(),User.getPassword());
 
                             //on verifie si on a bien insere l'utilisateur
                             //si oui on passe vers la page Home
                             if(insert==true){
                                 Toast.makeText(Register.this, "Registred successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent(getApplicationContext(),Home.class);
+                                Intent intent=new Intent(getApplicationContext(), Home.class);
                                 startActivity(intent);
                             }
 
@@ -81,7 +76,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
             }
@@ -89,3 +84,5 @@ public class Register extends AppCompatActivity {
 
     }
 }
+
+
